@@ -1,0 +1,125 @@
+---
+permalink: /heart/
+layout: base
+title: Heart attack Prediction
+search_exclude: true
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Attack Prediction</title>
+</head>
+<body>
+    <h1>Heart Attack Prediction</h1>
+    <div>
+        <label for="age">Age:</label>
+        <input type="number" id="age" min="0">
+    </div>
+    <div>
+        <label for="sex">Sex (0 for Female, 1 for Male):</label>
+        <input type="number" id="sex" min="0" max="1">
+    </div>
+    <div>
+        <label for="cp">Chest Pain Type (0-3):</label>
+        <input type="number" id="cp" min="0" max="3">
+    </div>
+    <div>
+        <label for="trtbps">Resting Blood Pressure:</label>
+        <input type="number" id="trtbps" min="0">
+    </div>
+    <div>
+        <label for="chol">Cholesterol:</label>
+        <input type="number" id="chol" min="0">
+    </div>
+    <div>
+        <label for="fbs">Fasting Blood Sugar (> 120 mg/dl) (0 or 1):</label>
+        <input type="number" id="fbs" min="0" max="1">
+    </div>
+    <div>
+        <label for="restecg">Resting Electrocardiographic Results (0-2):</label>
+        <input type="number" id="restecg" min="0" max="2">
+    </div>
+    <div>
+        <label for="thalachh">Maximum Heart Rate Achieved:</label>
+        <input type="number" id="thalachh" min="0">
+    </div>
+    <div>
+        <label for="exng">Exercise Induced Angina (0 or 1):</label>
+        <input type="number" id="exng" min="0" max="1">
+    </div>
+    <div>
+        <label for="oldpeak">ST Depression Induced by Exercise Relative to Rest:</label>
+        <input type="number" id="oldpeak" min="0">
+    </div>
+    <div>
+        <label for="slp">Slope of the Peak Exercise ST Segment (0-2):</label>
+        <input type="number" id="slp" min="0" max="2">
+    </div>
+    <div>
+        <label for="caa"># of Major Vessels (0-3) Colored by Fluoroscopy:</label>
+        <input type="number" id="caa" min="0" max="3">
+    </div>
+    <div>
+        <label for="thall">Thalassemia (0-3):</label>
+        <input type="number" id="thall" min="0" max="3">
+    </div>
+    <div>
+        <button onclick="predictHeartDisease()">Predict Heart Disease</button>
+    </div>
+
+    <div id="prediction"></div>
+
+    <script>
+        function predictHeartDisease() {
+            const age = document.getElementById('age').value;
+            const sex = document.getElementById('sex').value;
+            const cp = document.getElementById('cp').value;
+            const trtbps = document.getElementById('trtbps').value;
+            const chol = document.getElementById('chol').value;
+            const fbs = document.getElementById('fbs').value;
+            const restecg = document.getElementById('restecg').value;
+            const thalachh = document.getElementById('thalachh').value;
+            const exng = document.getElementById('exng').value;
+            const oldpeak = document.getElementById('oldpeak').value;
+            const slp = document.getElementById('slp').value;
+            const caa = document.getElementById('caa').value;
+            const thall = document.getElementById('thall').value;
+
+            const data = {
+                age,
+                sex,
+                cp,
+                trtbps,
+                chol,
+                fbs,
+                restecg,
+                thalachh,
+                exng,
+                oldpeak,
+                slp,
+                caa,
+                thall
+            };
+
+            fetch('http://127.0.0.1:8086/api/heart/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(prediction => {
+                console.log(prediction.message)
+                document.getElementById('prediction').innerText = `Heart Attack Probability: ${(prediction.message * 100).toFixed(2)}%`;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
