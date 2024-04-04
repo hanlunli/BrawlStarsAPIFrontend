@@ -1,0 +1,91 @@
+---
+permalink: /strokePrediction/
+layout: base
+title: Stroke
+search_exclude: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stroke Risk Prediction</title>
+</head>
+<body>
+    <h1>Stroke Risk Prediction</h1>
+    <div>
+        <label for="gender">Gender:</label>
+        <select id="gender">
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+        </select>
+    </div>
+    <div>
+        <label for="age">Age:</label>
+        <input type="number" id="age" min="0">
+    </div>
+    <div>
+        <label for="hypertension">Hypertension (0 or 1):</label>
+        <input type="number" id="hypertension" min="0" max="1">
+    </div>
+    <div>
+        <label for="heart_disease">Heart Disease (0 or 1):</label>
+        <input type="number" id="heart_disease" min="0" max="1">
+    </div>
+    <div>
+        <label for="ever_married">Ever Married (0 or 1):</label>
+        <input type="number" id="ever_married" min="0" max="1">
+    </div>
+    <div>
+        <label for="avg_glucose_level">Average Glucose Level:</label>
+        <input type="number" id="avg_glucose_level" min="0">
+    </div>
+    <div>
+        <label for="bmi">BMI:</label>
+        <input type="number" id="bmi" min="0">
+    </div>
+    <div>
+        <button onclick="predictStrokeRisk()">Predict Stroke Risk</button>
+    </div>
+
+    <div id="prediction"></div>
+
+    <script>
+        function predictStrokeRisk() {
+            const gender = document.getElementById('gender').value;
+            const age = document.getElementById('age').value;
+            const hypertension = document.getElementById('hypertension').value;
+            const heartDisease = document.getElementById('heart_disease').value;
+            const everMarried = document.getElementById('ever_married').value;
+            const avgGlucoseLevel = document.getElementById('avg_glucose_level').value;
+            const bmi = document.getElementById('bmi').value;
+
+            const data = {
+                gender,
+                age,
+                hypertension,
+                heart_disease: heartDisease, // Adjusted to match backend parameter naming
+                ever_married: everMarried, // Adjusted to match backend parameter naming
+                avg_glucose_level: avgGlucoseLevel, // Adjusted to match backend parameter naming
+                bmi
+            };
+
+            fetch('http://10.8.133.130:8086/api/stroke/predict', { // Adjusted endpoint URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(prediction => {
+                console.log(prediction.message)
+                document.getElementById('prediction').innerText = `Stroke Risk Prediction: ${prediction.message}`;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
