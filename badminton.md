@@ -201,10 +201,10 @@ modal.style.display = "none";
 closeModal()
 function submitForm() {
 const formData = {
-outlook: outlook === true ? 'yes' : 'no',
-temperature: temperature === true ? 'yes' : 'no',
-humidity: humidity === true ? 'yes' : 'no',
-wind: wind === true ? 'yes' : 'no'
+outlook: outlook === true ? 'no' : 'yes',
+temperature: temperature === true ? 'no' : 'yes',
+humidity: humidity === true ? 'no' : 'yes',
+wind: wind === true ? 'no' : 'yes'
 };
 const jsonOutput = JSON.stringify(formData);
 console.log(jsonOutput);
