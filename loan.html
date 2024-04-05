@@ -14,54 +14,54 @@ search_exclude: true
 <body>
     <h1>Loan Prediction</h1>
     <div>
-        <label for="no_of_dependents">Number of Dependents:</label>
-        <input type="number" id="no_of_dependents" min="0">
+        <label for=" no_of_dependents">Number of Dependents:</label>
+        <input type="number" id=" no_of_dependents" min="0">
     </div>
     <div>
-        <label for="education">Education:</label>
-        <select id="education">
+        <label for=" education">Education:</label>
+        <select id=" education">
             <option value="0">Not Graduate</option>
             <option value="1">Graduate</option>
         </select>
     </div>
     <div>
-        <label for="self_employed">Self Employed:</label>
-        <select id="self_employed">
+        <label for=" self_employed">Self Employed:</label>
+        <select id=" self_employed">
             <option value="0">No</option>
             <option value="1">Yes</option>
         </select>
     </div>
     <div>
-        <label for="income_annum">Annual Income:</label>
-        <input type="number" id="income_annum" min="0">
+        <label for=" income_annum">Annual Income:</label>
+        <input type="number" id=" income_annum" min="0">
     </div>
     <div>
-        <label for="loan_amount">Loan Amount:</label>
-        <input type="number" id="loan_amount" min="0">
+        <label for=" loan_amount">Loan Amount:</label>
+        <input type="number" id=" loan_amount" min="0">
     </div>
     <div>
-        <label for="loan_term">Loan Term:</label>
-        <input type="number" id="loan_term" min="0">
+        <label for=" loan_term">Loan Term:</label>
+        <input type="number" id=" loan_term" min="0">
     </div>
     <div>
-        <label for="cibil_score">CIBIL Score:</label>
-        <input type="number" id="cibil_score" min="0">
+        <label for=" cibil_score">CIBIL Score:</label>
+        <input type="number" id=" cibil_score" min="0">
     </div>
     <div>
-        <label for="residential_assets_value">Residential Assets Value:</label>
-        <input type="number" id="residential_assets_value" min="0">
+        <label for=" residential_assets_value">Residential Assets Value:</label>
+        <input type="number" id=" residential_assets_value" min="0">
     </div>
     <div>
-        <label for="commercial_assets_value">Commercial Assets Value:</label>
-        <input type="number" id="commercial_assets_value" min="0">
+        <label for=" commercial_assets_value">Commercial Assets Value:</label>
+        <input type="number" id=" commercial_assets_value" min="0">
     </div>
     <div>
-        <label for="luxury_assets_value">Luxury Assets Value:</label>
-        <input type="number" id="luxury_assets_value" min="0">
+        <label for=" luxury_assets_value">Luxury Assets Value:</label>
+        <input type="number" id=" luxury_assets_value" min="0">
     </div>
     <div>
-        <label for="bank_asset_value">Bank Asset Value:</label>
-        <input type="number" id="bank_asset_value" min="0">
+        <label for=" bank_asset_value">Bank Asset Value:</label>
+        <input type="number" id=" bank_asset_value" min="0">
     </div>
     <div>
         <button onclick="predictLoanApproval()">Predict Loan Approval</button>
@@ -70,31 +70,33 @@ search_exclude: true
 
     <script>
         function predictLoanApproval() {
-            const no_of_dependents = document.getElementById('no_of_dependents').value;
-            const education = document.getElementById('education').value;
-            const self_employed = document.getElementById('self_employed').value;
-            const income_annum = document.getElementById('income_annum').value;
-            const loan_amount = document.getElementById('loan_amount').value;
-            const loan_term = document.getElementById('loan_term').value;
-            const cibil_score = document.getElementById('cibil_score').value;
-            const residential_assets_value = document.getElementById('residential_assets_value').value;
-            const commercial_assets_value = document.getElementById('commercial_assets_value').value;
-            const luxury_assets_value = document.getElementById('luxury_assets_value').value;
-            const bank_asset_value = document.getElementById('bank_asset_value').value;
+            const no_of_dependents = document.getElementById(' no_of_dependents').value;
+            const education = document.getElementById(' education').value;
+            const self_employed = document.getElementById(' self_employed').value;
+            const income_annum = document.getElementById(' income_annum').value;
+            const loan_amount = document.getElementById(' loan_amount').value;
+            const loan_term = document.getElementById(' loan_term').value;
+            const cibil_score = document.getElementById(' cibil_score').value;
+            const residential_assets_value = document.getElementById(' residential_assets_value').value;
+            const commercial_assets_value = document.getElementById(' commercial_assets_value').value;
+            const luxury_assets_value = document.getElementById(' luxury_assets_value').value;
+            const bank_asset_value = document.getElementById(' bank_asset_value').value;
 
             const data = {
-                no_of_dependents,
-                education,
-                self_employed,
-                income_annum,
-                loan_amount,
-                loan_term,
-                cibil_score,
-                residential_assets_value,
-                commercial_assets_value,
-                luxury_assets_value,
-                bank_asset_value
+                " no_of_dependents": no_of_dependents,
+                " education": education,
+                " self_employed": self_employed,
+                " income_annum": income_annum,
+                " loan_amount": loan_amount,
+                " loan_term": loan_term,
+                " cibil_score": cibil_score,
+                " residential_assets_value": residential_assets_value,
+                " commercial_assets_value": commercial_assets_value,
+                " luxury_assets_value": luxury_assets_value,
+                " bank_asset_value": bank_asset_value
             };
+
+            console.log(data)
 
             fetch('http://127.0.0.1:8086/api/loan/predict', {
                 method: 'POST',
