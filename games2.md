@@ -179,7 +179,7 @@ layout: default
     <button class="resetbutton" onclick="resetGame()">Reset</button>
 </div>
     <div class="home-button">
-        <a href="http://127.0.0.1:4100/ByteJam/2024/02/08/Main.html">Home</a>
+        <a href="http://127.0.0.1:4100/teacher_portfolio/">Home</a>
     </div>
 <script>
     // Game variables

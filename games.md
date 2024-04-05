@@ -212,7 +212,7 @@ layout: default
     <button class="tempresetbutton" onclick="resetGame()">RESET</button>
 </div>
 <div class="home-button">
-    <a href="http://127.0.0.1:4100/ByteJam/2024/02/08/Main.html">Home</a>
+    <a href="http://127.0.0.1:4100/teacher_portfolio/">Home</a>
 </div>
 <div>
     <input class="betinput" type="number" id="betvalue" placeholder="Bet Amount" onkeypress="checkEnter(event)">
