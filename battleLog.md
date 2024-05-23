@@ -27,7 +27,6 @@ permalink: /battleLog
             alert(`Prediction: Water is ${result.prediction}`); // Show an alert
         } catch (error) {
             console.error('Error:', error);
-            alert('An error occurred. Please try again.'); // Show an alert in case of error
         }
 </script>
 
