@@ -15,8 +15,8 @@
         function sendPostRequest() {
             // Fixed player ID
             const playerID = 'JG2QC2R';
-            // Format the URL
-            const url = `https://api.brawlstars.com/v1/players/%23${playerID}/battlelog`;
+            // Format the URL with the CORS proxy
+            const url = `https://cors-anywhere.herokuapp.com/https://api.brawlstars.com/v1/players/%23${playerID}/battlelog`;
             // Set up the headers (replace 'YOUR_ACCESS_TOKEN' with your actual token)
             const headers = {
                 'Content-Type': 'application/json',
