@@ -12,8 +12,7 @@ permalink: /battleLog
                 method: 'GET', 
                 headers: {
                     'Content-Type': 'application/json; charset=utf-8',
-                    'Authorization':'Bearer ' + API_KEY,
-                    'cache-control': 'max-age=120'
+                    'Authorization':'Bearer ' + API_KEY
                 }
             });
             response.json().then(data => {
