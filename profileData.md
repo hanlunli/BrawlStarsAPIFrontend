@@ -1,28 +1,22 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brawl Stars Player Log</title>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
     <h1>Brawl Stars Player Log</h1>
-    <!-- Markdown input area -->
-    <textarea id="markdown-input" rows="10" cols="30">
-        Input your Player ID: `JG2QC2R`
-    </textarea>
     <!-- Button to trigger POST request -->
     <button onclick="sendPostRequest()">Get Battle Log</button>
     <!-- Display response -->
     <pre id="response-output"></pre>
     <script>
         function sendPostRequest() {
-            // Get the input value
-            const markdownInput = document.getElementById('markdown-input').value;
-            // Parse the player ID from the Markdown input
-            const playerID = markdownInput.match(/`([^`]+)`/)[1];
+            // Fixed player ID
+            const playerID = 'JG2QC2R';
             // Format the URL
-            const url = `https://api.brawlstars.com/v1/players/%23JG2QC2R/battlelog`;
+            const url = `https://api.brawlstars.com/v1/players/%23${playerID}/battlelog`;
             // Set up the headers (replace 'YOUR_ACCESS_TOKEN' with your actual token)
             const headers = {
                 'Content-Type': 'application/json',
