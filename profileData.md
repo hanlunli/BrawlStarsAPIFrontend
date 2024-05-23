@@ -22,7 +22,7 @@
             // Parse the player ID from the Markdown input
             const playerID = markdownInput.match(/`([^`]+)`/)[1];
             // Format the URL
-            const url = `https://api.brawlstars.com/v1/players/%23${playerID}/battlelog`;
+            const url = `https://api.brawlstars.com/v1/players/%23JG2QC2R/battlelog`;
             // Set up the headers (replace 'YOUR_ACCESS_TOKEN' with your actual token)
             const headers = {
                 'Content-Type': 'application/json',
