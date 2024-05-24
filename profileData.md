@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,9 +22,9 @@
             };
 
             // Use a CORS proxy
-            var corsProxy = 'https://cors-anywhere.herokuapp.com/';
+            var corsProxy = 'https://api.allorigins.win/raw?url=';
             var apiUrl = "https://api.brawlstars.com/v1/players/%23JG2QC2R/battlelog";
-            var url = corsProxy + apiUrl;
+            var url = corsProxy + encodeURIComponent(apiUrl);
 
             fetch(url, requestOptions)
                 .then(response => {
