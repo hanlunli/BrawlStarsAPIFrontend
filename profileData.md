@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,7 +28,12 @@
             var url = corsProxy + apiUrl;
 
             fetch(url, requestOptions)
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
                 .then(result => {
                     // Display the response
                     document.getElementById('response-output').innerText = JSON.stringify(result, null, 2);
