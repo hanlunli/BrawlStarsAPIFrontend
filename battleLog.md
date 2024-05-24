@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Conway's Game of Life</title>
 <style>
     canvas {
         border: 1px solid black;
     }
 </style>
-</head>
 <body>
 <canvas id="gameCanvas"></canvas>
 <br>
@@ -113,5 +108,3 @@ function clearGrid() {
     drawGrid();
 }
 </script>
-</body>
-</html>
