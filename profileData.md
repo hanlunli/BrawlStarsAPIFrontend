@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,14 +14,12 @@
     <script>
         function sendGetRequest() {
             var myHeaders = new Headers();
-            myHeaders.append("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjVhYjRjODQyLTNjZjQtNDRjNy05NjAzLTQ4Njk2MWJmYjkzNCIsImlhdCI6MTcxNjU3NDAxMSwic3ViIjoiZGV2ZWxvcGVyLzY1MjJjZGQ2LThhYzktMzRhOS1kMjhlLWNiZmIwM2JkMTExNyIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMTA0LjIzMi4zNy4yMTMiXSwidHlwZSI6ImNsaWVudCJ9XX0.sgIo-pA--PIHC6VkCvTdLwGgBt3vEz3Y7htoUOLwqDKj6_zgI5Dt3tdkql0_32iV3zgX27skU4fVkihbTYgRAg");
-
+            myHeaders.append("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjcxZGZhZjZmLTRkZWQtNDdiZi1iNWM4LTNlYTQyNGFkOWRlMSIsImlhdCI6MTcxNjU4MjAyOSwic3ViIjoiZGV2ZWxvcGVyLzY1MjJjZGQ2LThhYzktMzRhOS1kMjhlLWNiZmIwM2JkMTExNyIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMTA0LjIzMi4zNy4xNjciXSwidHlwZSI6ImNsaWVudCJ9XX0.IlFf34rH0NPan-n8Txsveavm-7pSepP-CzmvFKde0kXAHRkE7YJ5FoqVAXYIBugVXfzFFGP_RbjsYmIE3LHrVw");
             var requestOptions = {
                 method: 'GET',
                 headers: myHeaders,
                 redirect: 'follow'
             };
-
             fetch("https://api.brawlstars.com/v1/players/%23JG2QC2R/battlelog", requestOptions)
                 .then(response => response.json())
                 .then(result => {
