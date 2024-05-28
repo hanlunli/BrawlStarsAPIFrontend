@@ -136,5 +136,3 @@ function adjustSpeed(newSpeed) {
     }
 }
 </script>
-</body>
-</html>
