@@ -1,5 +1,3 @@
-<html lang="en">
-<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Conway's Game of Life</title>
@@ -19,18 +17,14 @@
 <script>
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
-
 // Size of the grid
 const gridSize = 50;
 const cellSize = 10; // Size of each cell in pixels
 let speed = 100; // Milliseconds per frame
-
 canvas.width = gridSize * cellSize;
 canvas.height = gridSize * cellSize;
-
 let grid = Array.from({ length: gridSize }, () => Array.from({ length: gridSize }, () => 0));
 let intervalId = null;
-
 // Function to update the grid
 function updateGrid() {
     const newGrid = Array.from({ length: gridSize }, () => Array.from({ length: gridSize }, () => 0));
@@ -52,7 +46,6 @@ function updateGrid() {
     }
     grid = newGrid;
 }
-
 // Function to count the number of live neighbors
 function countNeighbors(x, y) {
     let count = 0;
@@ -68,7 +61,6 @@ function countNeighbors(x, y) {
     }
     return count;
 }
-
 // Function to draw the grid
 function drawGrid() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -98,7 +90,6 @@ function drawGridLines() {
         ctx.stroke();
     }
 }
-
 // Mouse event listeners for toggling cells
 canvas.addEventListener('mousedown', function(event) {
     const x = Math.floor(event.offsetY / cellSize);
@@ -106,20 +97,35 @@ canvas.addEventListener('mousedown', function(event) {
     grid[x][y] = 1 - grid[x][y]; // Toggle cell state
     drawGrid();
 });
-
 // Start the simulation
 function start() {
+    const url = "http://127.0.0.1:8086/api/users/";
+    const body = {
+        uid: localStorage.getItem('uid'),
+        timesplayed: '1'
+    };
+    const authoptions = {
+        method: 'PUT',
+        mode: 'cors',
+        cache: 'default',
+        credentials: 'include',
+        body: JSON.stringify(body),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    };
+    fetch(url, authoptions)
+    console.log('added one');
+    console.log(body);
     intervalId = setInterval(function() {
         updateGrid();
         drawGrid();
     }, speed);
 }
-
 // Stop the simulation
 function stop() {
     clearInterval(intervalId);
 }
-
 // Clear the grid
 function clearGrid() {
     clearInterval(intervalId);
