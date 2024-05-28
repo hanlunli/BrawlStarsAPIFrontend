@@ -1,0 +1,315 @@
+---
+layout: default
+title: Student Blog
+permalink: /algorithm
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Algorithms Runtime Comparison</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        strong {
+            color: white;
+        }
+
+        #results {
+            margin-top: 20px;
+        }
+
+        .algorithm {
+            margin-bottom: 40px;
+        }
+
+        .algorithm h2 {
+            margin: 10px 0;
+        }
+
+        .algorithm p {
+            margin: 0 0 10px 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        #arrayBubbleSort {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 300px;
+            margin-top: 20px;
+        }
+
+        #arrayQuickSort {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 300px;
+            margin-top: 20px;
+        }
+
+        #arrayMergeSort {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 300px;
+            margin-top: 20px;
+        }
+
+        .bar {
+            width: 5px;
+            background-color: #4CAF50;
+            margin: 0 1px;
+            transition: height 0.01s ease;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sorting Algorithms Runtime Comparison</h1>
+    
+    <div class="algorithm" id="bubble-sort">
+        <h2>Bubble Sort</h2>
+        <p>Bubble Sort is a simple comparison-based algorithm. It repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The process is repeated until the list is sorted. The process has a time complexity of O(n^2)</p>
+        <button onclick="runAlgorithm('Bubble Sort', bubbleSort)">Run Bubble Sort</button>
+    </div>
+
+    <div id="resultsBubble Sort"></div>
+
+    <button onclick="visualizeSort('BubbleSort', bubbleSortVisualize)">Visualize Bubble Sort</button>
+    <div id="arrayBubbleSort"></div>
+    
+    <div class="algorithm" id="quick-sort">
+        <h2>Quick Sort</h2>
+        <p>Quick Sort is a divide-and-conquer algorithm. It selects a 'pivot' element and partitions the array into two halves: one with elements less than the pivot and one with elements greater than the pivot. It recursively sorts the subarrays. The process has a time complexity of O(n*log(n))</p>
+        <button onclick="runAlgorithm('Quick Sort', quickSort)">Run Quick Sort</button>
+    </div>
+
+    <div id="resultsQuick Sort"></div>
+
+    <button onclick="visualizeSort('QuickSort', quickSortVisualize)">Visualize Quick Sort</button>
+    <div id="arrayQuickSort"></div>
+    
+    <div class="algorithm" id="merge-sort">
+        <h2>Merge Sort</h2>
+        <p>Merge Sort is also a divide-and-conquer algorithm. It divides the array into halves, recursively sorts them, and then merges the sorted halves to produce a sorted array. The process has a time complexity of O(n*log(n))</p>
+        <button onclick="runAlgorithm('Merge Sort', mergeSort)">Run Merge Sort</button>
+    </div>  
+    
+    <div id="resultsMerge Sort"></div>
+
+    <button onclick="visualizeSort('MergeSort', mergeSortVisualize)">Visualize Merge Sort</button>
+    <div id="arrayMergeSort"></div>
+
+    <script>
+        function runAlgorithm(name, sortFunction) {
+            const arraySize = 10000;
+            const array = Array.from({ length: arraySize }, () => Math.floor(Math.random() * arraySize));
+            const resultsDiv = document.getElementById(`results${name}`);
+
+            resultsDiv.innerHTML = `<p>Running ${name}...</p>`;
+
+            setTimeout(() => {
+                const arrayCopy = [...array];
+                const start = performance.now();
+                const sortedArray = sortFunction(arrayCopy);
+                const end = performance.now();
+                const time = end - start;
+
+                const unsortedHead = array.slice(0, 10).join(', ');
+                const sortedHead = sortedArray.slice(0, 10).join(', ');
+
+                resultsDiv.innerHTML = `
+                    <h2>${name}</h2>
+                    <p>Runtime: ${time.toFixed(2)} ms</p>
+                    <p>${getExplanation(name)}</p>
+                    <p><strong>Unsorted Head:</strong> [${unsortedHead}...]</p>
+                    <p><strong>Sorted Head:</strong> [${sortedHead}...]</p>
+                `;
+            }, 100);
+        }
+
+        function getExplanation(name) {
+            switch(name) {
+                case 'Bubble Sort':
+                    return 'Bubble Sort repeatedly compares and swaps adjacent elements if they are in the wrong order, leading to a sorted list after multiple passes.';
+                case 'Quick Sort':
+                    return 'Quick Sort selects a pivot element and partitions the array into two subarrays with elements less than and greater than the pivot. It recursively sorts the subarrays.';
+                case 'Merge Sort':
+                    return 'Merge Sort divides the array into halves, recursively sorts each half, and then merges the sorted halves to produce a sorted array.';
+                default:
+                    return '';
+            }
+        }
+
+        function bubbleSort(arr) {
+            const n = arr.length;
+            for (let i = 0; i < n; i++) {
+                for (let j = 0; j < n - i - 1; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                    }
+                }
+            }
+            return arr;
+        }
+
+        function quickSort(arr) {
+            if (arr.length <= 1) return arr;
+            const pivot = arr[Math.floor(arr.length / 2)];
+            const left = arr.filter(x => x < pivot);
+            const right = arr.filter(x => x > pivot);
+            return [...quickSort(left), pivot, ...quickSort(right)];
+        }
+
+        function mergeSort(arr) {
+            if (arr.length <= 1) return arr;
+            const mid = Math.floor(arr.length / 2);
+            const left = mergeSort(arr.slice(0, mid));
+            const right = mergeSort(arr.slice(mid));
+            return merge(left, right);
+        }
+
+        function merge(left, right) {
+            let result = [], leftIndex = 0, rightIndex = 0;
+            while (leftIndex < left.length && rightIndex < right.length) {
+                if (left[leftIndex] < right[rightIndex]) {
+                    result.push(left[leftIndex++]);
+                } else {
+                    result.push(right[rightIndex++]);
+                }
+            }
+            return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+        }
+
+        let delay = 5;
+
+        function visualizeSort(name, sortFunction) {
+            const arraySize = 100;
+            const array = Array.from({ length: arraySize }, () => Math.floor(Math.random() * arraySize));
+            const arrayDiv = document.getElementById(`array${name}`);
+            arrayDiv.innerHTML = '';
+            array.forEach(value => {
+                const bar = document.createElement('div');
+                bar.classList.add('bar');
+                bar.style.height = `${value * 3}px`;
+                arrayDiv.appendChild(bar);
+            });
+            sortFunction([...array]);
+        }
+
+        function swapBarsVisualize(bar1, bar2) {
+            return new Promise(resolve => {
+                const tempHeight = bar1.style.height;
+                bar1.style.height = bar2.style.height;
+                bar2.style.height = tempHeight;
+                setTimeout(() => resolve(), delay);
+            });
+        }
+
+        async function bubbleSortVisualize(arr) {
+            const bars = document.getElementsByClassName('bar');
+            for (let i = 0; i < arr.length; i++) {
+                for (let j = 0; j < arr.length - i - 1; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        await swapBarsVisualize(bars[j], bars[j + 1]);
+                        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                    }
+                }
+            }
+        }
+
+        async function quickSortVisualize(arr, left = 0, right = arr.length - 1) {
+            if (left < right) {
+                const pivotIndex = await partitionVisualize(arr, left, right);
+                await quickSortVisualize(arr, left, pivotIndex - 1);
+                await quickSortVisualize(arr, pivotIndex + 1, right);
+            }
+        }
+
+        async function partitionVisualize(arr, left, right) {
+            const bars = document.getElementsByClassName('bar');
+            const pivot = arr[right];
+            let i = left - 1;
+            for (let j = left; j < right; j++) {
+                if (arr[j] < pivot) {
+                    i++;
+                    await swapBarsVisualize(bars[i], bars[j]);
+                    [arr[i], arr[j]] = [arr[j], arr[i]];
+                }
+            }
+            await swapBarsVisualize(bars[i + 1], bars[right]);
+            [arr[i + 1], arr[right]] = [arr[right], arr[i + 1]];
+            return i + 1;
+        }
+
+        async function mergeSortVisualize(arr) {
+            await mergeSortHelperVisualize(arr, 0, arr.length - 1);
+        }
+
+        async function mergeSortHelperVisualize(arr, left, right) {
+            if (left >= right) {
+                return;
+            }
+            const mid = Math.floor((left + right) / 2);
+            await mergeSortHelperVisualize(arr, left, mid);
+            await mergeSortHelperVisualize(arr, mid + 1, right);
+            await mergeVisualize(arr, left, mid, right);
+        }
+
+        async function mergeVisualize(arr, left, mid, right) {
+            const bars = document.getElementsByClassName('bar');
+            const leftArray = arr.slice(left, mid + 1);
+            const rightArray = arr.slice(mid + 1, right + 1);
+            let i = left, j = 0, k = 0;
+            while (j < leftArray.length && k < rightArray.length) {
+                if (leftArray[j] <= rightArray[k]) {
+                    await setBarHeight(bars[i], leftArray[j]);
+                    arr[i++] = leftArray[j++];
+                } else {
+                    await setBarHeight(bars[i], rightArray[k]);
+                    arr[i++] = rightArray[k++];
+                }
+            }
+            while (j < leftArray.length) {
+                await setBarHeight(bars[i], leftArray[j]);
+                arr[i++] = leftArray[j++];
+            }
+            while (k < rightArray.length) {
+                await setBarHeight(bars[i], rightArray[k]);
+                arr[i++] = rightArray[k++];
+            }
+        }
+
+        function setBarHeight(bar, value) {
+            return new Promise(resolve => {
+                bar.style.height = `${value * 3}px`;
+                setTimeout(() => resolve(), delay);
+            });
+        }
+    </script>
+</body>
+</html>

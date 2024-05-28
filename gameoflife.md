@@ -1,3 +1,9 @@
+---
+layout: default
+title: Student Blog
+permalink: /gameoflife
+---
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Conway's Game of Life</title>
