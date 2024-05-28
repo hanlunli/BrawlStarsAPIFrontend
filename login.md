@@ -37,7 +37,7 @@ permalink: /login
 <script>
 
     // uri variable and options object are obtained from config.js
-    const uri = "http://127.0.0.1:8086";
+    const uri = "http://127.0.0.1:8073";
     const options = {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin

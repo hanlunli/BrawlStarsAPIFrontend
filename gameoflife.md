@@ -8,7 +8,6 @@ permalink: /gameoflife
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Conway's Game of Life</title>
 <link rel="stylesheet" href="helloworld.css">
-</head>
 <body>
 <canvas id="gameCanvas"></canvas>
 <div id="controls">
@@ -105,7 +104,7 @@ canvas.addEventListener('mousedown', function(event) {
 });
 // Start the simulation
 function start() {
-    const url = "http://127.0.0.1:8086/api/users/";
+    const url = "http://127.0.0.1:8073/api/users/";
     const body = {
         uid: localStorage.getItem('uid'),
         timesplayed: '1'
@@ -147,4 +146,9 @@ function adjustSpeed(newSpeed) {
         start();
     }
 }
+
+
 </script>
+
+
+<a href='{{site.baseurl}}/leaderboard'>Leaderboard</a>

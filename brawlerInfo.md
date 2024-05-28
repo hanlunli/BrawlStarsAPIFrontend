@@ -208,7 +208,7 @@ wind: wind === true ? 'no' : 'yes'
 };
 const jsonOutput = JSON.stringify(formData);
 console.log(jsonOutput);
-fetch("http://127.0.0.1:8086/badminton/", {
+fetch("http://127.0.0.1:8073/badminton/", {
 method: "POST",
 body: jsonOutput,
 headers: {
