@@ -1,21 +1,21 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Conway's Game of Life</title>
-<style>
-    canvas {
-        border: 1px solid black;
-    }
-</style>
+<link rel="stylesheet" href="helloworld.css">
 </head>
 <body>
 <canvas id="gameCanvas"></canvas>
-<br>
-<button onclick="start()">Start</button>
-<button onclick="stop()">Stop</button>
-<button onclick="clearGrid()">Clear</button>
+<div id="controls">
+    <button onclick="start()">Start</button>
+    <button onclick="stop()">Stop</button>
+    <button onclick="clearGrid()">Clear</button>
+    <div>
+        <label for="speedRange">Speed:</label>
+        <input type="range" id="speedRange" min="10" max="1000" value="900" oninput="adjustSpeed(this.value)">
+    </div>
+</div>
 <script>
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
@@ -23,7 +23,7 @@ const ctx = canvas.getContext('2d');
 // Size of the grid
 const gridSize = 50;
 const cellSize = 10; // Size of each cell in pixels
-const speed = 100; // Milliseconds per frame
+let speed = 100; // Milliseconds per frame
 
 canvas.width = gridSize * cellSize;
 canvas.height = gridSize * cellSize;
@@ -34,7 +34,6 @@ let intervalId = null;
 // Function to update the grid
 function updateGrid() {
     const newGrid = Array.from({ length: gridSize }, () => Array.from({ length: gridSize }, () => 0));
-
     for (let i = 0; i < gridSize; i++) {
         for (let j = 0; j < gridSize; j++) {
             const neighbors = countNeighbors(i, j);
@@ -51,7 +50,6 @@ function updateGrid() {
             }
         }
     }
-
     grid = newGrid;
 }
 
@@ -74,14 +72,30 @@ function countNeighbors(x, y) {
 // Function to draw the grid
 function drawGrid() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     for (let i = 0; i < gridSize; i++) {
         for (let j = 0; j < gridSize; j++) {
             if (grid[i][j] === 1) {
                 ctx.fillStyle = 'black';
-                ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
+            } else {
+                ctx.fillStyle = 'white';
             }
+            ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
         }
+    }
+    drawGridLines();
+}
+
+function drawGridLines() {
+    ctx.strokeStyle = '#ccc';
+    for (let i = 0; i <= gridSize; i++) {
+        ctx.beginPath();
+        ctx.moveTo(0, i * cellSize);
+        ctx.lineTo(canvas.width, i * cellSize);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(i * cellSize, 0);
+        ctx.lineTo(i * cellSize, canvas.height);
+        ctx.stroke();
     }
 }
 
@@ -111,6 +125,15 @@ function clearGrid() {
     clearInterval(intervalId);
     grid = Array.from({ length: gridSize }, () => Array.from({ length: gridSize }, () => 0));
     drawGrid();
+}
+
+// Adjust the speed of the simulation
+function adjustSpeed(newSpeed) {
+    speed = 1010 - newSpeed; // Invert the scale
+    if (intervalId) {
+        clearInterval(intervalId);
+        start();
+    }
 }
 </script>
 </body>
