@@ -37,7 +37,7 @@ permalink: /login
 <script>
 
     // uri variable and options object are obtained from config.js
-    const uri = "http://brawlstarsapibackend.stu.nighthawkcodingsociety.com/";
+    const uri = "http://brawlstarsapibackend.stu.nighthawkcodingsociety.com";
     const options = {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
