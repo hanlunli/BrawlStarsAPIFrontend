@@ -28,6 +28,7 @@ const cellSize = 10; // Size of each cell in pixels
 let speed = 100; // Milliseconds per frame
 canvas.width = gridSize * cellSize;
 canvas.height = gridSize * cellSize;
+
 let grid = Array.from({ length: gridSize }, () => Array.from({ length: gridSize }, () => 0));
 let intervalId = null;
 // Function to update the grid
@@ -104,7 +105,7 @@ canvas.addEventListener('mousedown', function(event) {
 });
 // Start the simulation
 function start() {
-    const url = "http://127.0.0.1:8073/api/users/";
+    const url = "http://brawlstarsapibackend.stu.nighthawkcodingsociety.com/api/users";
     const body = {
         uid: localStorage.getItem('uid'),
         timesplayed: '1'
