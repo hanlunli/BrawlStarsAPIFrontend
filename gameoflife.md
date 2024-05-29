@@ -104,7 +104,7 @@ canvas.addEventListener('mousedown', function(event) {
 });
 // Start the simulation
 function start() {
-    const url = "http://brawlstarsapibackend.stu.nighthawkcodingsociety.com/api/users";
+    const url = "https://brawlstarsapibackend.stu.nighthawkcodingsociety.com/api/users";
     const body = {
         uid: localStorage.getItem('uid'),
         timesplayed: '1'
