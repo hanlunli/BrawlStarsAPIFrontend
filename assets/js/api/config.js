@@ -1,8 +1,8 @@
 export var uri;
 if (location.hostname === "localhost") {
-        uri = "http://localhost:8073";
+        uri = "http://brawlstarsapibackend.stu.nighthawkcodingsociety.com";
 } else if (location.hostname === "127.0.0.1") {
-        uri = "http://127.0.0.1:8073";
+        uri = "http://brawlstarsapibackend.stu.nighthawkcodingsociety.com";
 } else {
         uri = "http://brawlstarsapibackend.stu.nighthawkcodingsociety.com";
 }
