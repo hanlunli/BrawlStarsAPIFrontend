@@ -1,17 +1,8 @@
-<<<<<<< Updated upstream
 title: Project
 owner_name: Hanlun Li
 github_username: hanlunli
 github_repo: "BrawlStarsAPIFrontend"
 baseurl: "/BrawlStarsAPIFrontend"
-=======
-title: Teacher 2.0
-description: "August 2023 to June 2024"
-owner_name: John Mortensen
-github_username: nighthawkcoders
-github_repo: "teacher_portfolio"
-baseurl: "/BrawlStarsAPIFrontend/"
->>>>>>> Stashed changes
 future: true
 remote_theme: jekyll/minima
 minima:
