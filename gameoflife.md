@@ -28,7 +28,6 @@ const cellSize = 10; // Size of each cell in pixels
 let speed = 100; // Milliseconds per frame
 canvas.width = gridSize * cellSize;
 canvas.height = gridSize * cellSize;
-
 let grid = Array.from({ length: gridSize }, () => Array.from({ length: gridSize }, () => 0));
 let intervalId = null;
 // Function to update the grid
@@ -128,10 +127,12 @@ function start() {
         drawGrid();
     }, speed);
 }
+
 // Stop the simulation
 function stop() {
     clearInterval(intervalId);
 }
+
 // Clear the grid
 function clearGrid() {
     clearInterval(intervalId);
